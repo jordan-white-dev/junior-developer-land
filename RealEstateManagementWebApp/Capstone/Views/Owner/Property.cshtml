@@ -1,0 +1,82 @@
+﻿@model Capstone.Models.Property
+
+@{
+    ViewData["Title"] = "Add Properties";
+}
+
+<br />
+<div class="w3-container">
+    <h2><strong>Add Property</strong></h2>
+    <h6>If you have already added your property. You can add additional units to it <a asp-controller="Owner" asp-action="Unit">here</a></h6>
+    <div class="w3-row w3-large">
+        <form asp-controller="Owner" asp-action="Property">
+            <div asp-validation-summary="ModelOnly"></div>
+            <hr />
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:10%">
+                    <div class="w3-col s10">
+                        <label asp-for="OwnerID" class="control-label"></label>
+                        <input asp-for="OwnerID" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="OwnerID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:12%">
+                    <div class="w3-col s10">
+                        <label asp-for="ManagerID" class="control-label"></label>
+                        <input asp-for="ManagerID" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ManagerID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:25%">
+                    <div class="w3-col s10">
+                        <label asp-for="PropertyName" class="control-label"></label>
+                        <input asp-for="PropertyName" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="PropertyName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:10%">
+                    <div class="w3-col s10">
+                        <label asp-for="NumberOfUnits" class="control-label"></label>
+                        <input asp-for="NumberOfUnits" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="NumberOfUnits" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:25%">
+                    <div class="w3-col s10">
+                        <label asp-for="PropertyType" class="control-label"></label>
+                        <select asp-for="PropertyType" asp-items="Model.PropertyTypesList" class="w3-select w3-border"></select>
+                        <span asp-validation-for="PropertyType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            @* Currently commented out because we are not using property images anywhere. They may no longer be necessary *@
+            @*<div class="w3-row">
+                <div class="form-group w3-col" style="width:40%">
+                    <div class="w3-col s10">
+                        <label asp-for="ImageSource" class="control-label"></label>
+                        <input asp-for="ImageSource" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ImageSource" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>*@
+            <div class="w3-row">
+                <div class="form-group w3-col">
+                    <input type="submit" value="Submit" class="w3-button w3-green w3-left-align" />
+                </div>
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to Owner Home</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

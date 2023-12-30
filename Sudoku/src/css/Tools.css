@@ -1,0 +1,17 @@
+.tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 25px;
+}
+
+.tools-large {
+  width: 783px;
+}
+
+.tools-medium {
+  width: 522px;
+}
+
+.tools-small {
+  width: 261px;
+}

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/main.css">
+
+    <style>
+        .w3-content {
+            max-width: 80%
+        }
+
+        input[type='radio'] {
+            margin: 6px;
+        }
+
+        input[type='radio'], label {
+            display:inline;
+            /*vertical-align: text-bottom;*/
+        }
+
+    </style>
+</head>
+<body>
+    <div class="w3-top">
+
+        <div style="text-align:center; position: relative; display:inline-block;" class="w3-bar w3-theme w3-top w3-left-align w3-large">
+            @*display:flex; justify-content:flex-end; align-items:flex-end;*@
+                <div style="text-align:center; position:relative; display: inline-block;">
+
+                    <img src="~/images/techelevatorlogo.png" alt="Tech Elevator Real Estate Logo" style="width: 475px; height: auto;" class="w3-bar-item w3-hide-small" />
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Home" style="font-size:16px;" class ="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Search" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Available Properties</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Apply" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Apply Now</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Tenant" asp-action="Index" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Current Residents</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Owner" asp-action="Index" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Owners</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Manager" asp-action="Index" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Managers</a>
+                </div>
+                <div style="display: inline-block">
+                    @await Component.InvokeAsync("NavBar") @* Render the NavBar component. *@
+                </div>
+
+        </div>
+    </div>
+    <div class="w3-content w3-border-left w3-border-right">
+        <div id="container" class="w3-main w3-white" style="margin-top:40px">
+            <main>
+                <br>
+                <br>
+                <br>
+                @RenderBody()
+            </main>
+        </div>
+        <footer class="w3-container w3-padding-16" style="margin-top:32px"></footer>
+        <script src="~/js/app.js"></script>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Capstone.Web.Models.Park>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    p {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #319F50;
+        text-decoration: none;
+    }
+
+</style>
+<table class="table">
+    <tbody>
+        @foreach (Park item in Model)
+        {
+            <tr>
+                <td>
+                    @*TODO fix img src*@
+                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Code">
+                    <img src="~/Images/parks/@(item.Code).jpg" /></a>
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Code"><h1>@Html.DisplayFor(modelItem => item.Name)</h1></a>
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

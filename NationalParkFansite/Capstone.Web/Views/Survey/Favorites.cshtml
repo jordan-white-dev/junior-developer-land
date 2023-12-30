@@ -1,0 +1,59 @@
+﻿@model SurveyViewModel
+
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<style>
+    .header-text {
+        font-size: 3em;
+        color: #319F50;
+    }
+
+    .favorites-flex {
+        display: flex;
+        align-items: center;
+    }
+
+        .favorites-flex div {
+            padding-right: 3vw;
+        }
+
+    .favorites-image {
+        max-width: 20vw;
+        height: auto;
+    }
+
+    .favorites-text-top {
+        font-size: 2.5vw;
+        font-weight: bold;
+        color: #319F50;
+    }
+
+    .favorites-text-bottom {
+        font-size: 1.5vw;
+        font-weight: bold;
+        text-align: left;
+    }
+</style>
+
+<h1 class="header-text">NPGeek Reader's Favorite Parks</h1>
+@foreach (KeyValuePair<string, int> keyValuePair in Model.Surveys)
+{
+    foreach (Park park in Model.Parks)
+    {
+        if (park.Code == keyValuePair.Key)
+        {
+            <hr />
+            <div class="favorites-flex">
+                <div>
+                    <img class="favorites-image" src="~/Images/parks/@(park.Code).jpg" />
+                </div>
+                <div>
+                    <h3 class="favorites-text-top">@park.Name</h3>
+                    <h5 class="favorites-text-bottom">Survey Favorites: @keyValuePair.Value</h5>
+                </div>
+            </div>
+        }
+    }
+}

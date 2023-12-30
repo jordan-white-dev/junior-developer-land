@@ -1,0 +1,79 @@
+﻿@model Capstone.Models.ViewModels.Account.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+<style>
+    span {
+        font-weight: 800;
+        font-size: 20px;
+        color: red;
+    }
+
+    .email, .password, .submit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 10px;
+        max-width: 400px;
+        margin-left: 15px;
+    }
+
+    .failed-login {
+        max-width: 800px;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+        background-color: orangered;
+    }
+
+        .failed-login p {
+            text-align: center;
+            color: white;
+        }
+
+    .error-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+<div class="login">
+    <h2>Login</h2>
+
+    <hr />
+
+
+    <div class="error-box">
+        @if (Model != null && Model.failedLogin)
+        {
+            <span class="failed-login">
+                Your Email or Password was incorrect. Please try again.
+            </span>
+        }
+    </div>
+    <form asp-controller="account" asp-action="login" method="post">
+
+        <div class="email">
+            <div>
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email"></span>
+            </div>
+            <input type="email" asp-for="Email" />
+            <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="password">
+            <div>
+                <label asp-for="Password"></label>
+                <span asp-validation-for="Password"></span>
+            </div>
+            <input type="password" asp-for="Password" />
+        </div>
+        <div class="submit">
+            <input type="submit" value="Login" class="btn btn-default" />
+        </div>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+﻿@model Capstone.Models.ServiceRequest
+
+@{
+    ViewData["Title"] = "Submit Request";
+}
+
+<br />
+<div class="w3-container">
+    <h2><strong>Submit Service Request</strong></h2>
+    <div class="w3-row w3-large">
+        <form asp-controller="Tenant" asp-action="Submit">
+            <div asp-validation-summary="ModelOnly"></div>
+            <hr />
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="TenantID" class="control-label"></label>
+                        <input asp-for="TenantID" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="TenantID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:25%">
+                    <div class="w3-col s10">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:30%">
+                    <div class="w3-col s10 checkbox">
+                        <label style="font-weight:bold;">
+                            <input asp-for="IsEmergency" /> @Html.DisplayNameFor(model => model.IsEmergency)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:35%">
+                    <div class="w3-col s10">
+                        <label asp-for="Category" class="control-label"></label>
+                        <select asp-for="Category" asp-items="Model.CategoriesList" class="w3-select w3-border"></select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col">
+                    <input type="submit" value="Submit" class="w3-button w3-green w3-left-align" />
+                </div>
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to Tenant Home</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

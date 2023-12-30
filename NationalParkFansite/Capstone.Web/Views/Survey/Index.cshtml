@@ -1,0 +1,94 @@
+﻿@model Capstone.Web.Models.Survey
+
+@{
+    ViewData["Title"] = "Index";
+    List<SelectListItem> parks = ViewBag.ParkSelectList as List<SelectListItem>;
+}
+
+<style>
+    .header-text {
+        font-size: 3em;
+        color: #319F50;
+    }
+
+    .row {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+    }
+
+    .field-label {
+        font-weight: bold;
+    }
+
+    input[type="radio"] {
+        margin: 0 0 0 20px;
+    }
+
+    #left-button {
+        margin: 0 0 0 0;
+    }
+
+    #submission-button {
+        margin-left: 15px;
+    }
+</style>
+
+<h2 class="header-text">Daily Survey</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label asp-for="ParkCode" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="ParkCode" asp-items="parks"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label asp-for="Email" class="control-label"></label>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="Email" class="form-control"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-md-7"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label asp-for="State" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <select asp-for="State" asp-items="Survey.statesList"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5 class="field-label">Select Activity Level:</h5>
+                </div>
+                <div class="col-md-6">
+                    <input type="radio" name="activityLevel" value="inactive" class="activity-selector" id="left-button"/>
+                    <label asp-for="ActivityLevel" class="control-label">Inactive</label>
+
+                    <input type="radio" name="activityLevel" value="sedentary" class="activity-selector" />
+                    <label asp-for="ActivityLevel" class="control-label">Sedentary</label>
+
+                    <input type="radio" name="activityLevel" value="active" class="activity-selector" checked="checked" />
+                    <label asp-for="ActivityLevel" class="control-label">Active</label>
+
+                    <input type="radio" name="activityLevel" value="extremely active" class="activity-selector" />
+                    <label asp-for="ActivityLevel" class="control-label">Extremely Active</label>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Submit" class="btn btn-default" id="submission-button"/>
+            </div>
+        </form>
+    </div>
+</div>

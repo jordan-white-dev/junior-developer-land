@@ -1,0 +1,194 @@
+﻿@model Capstone.Models.ViewModels.SearchViewModel
+
+@{
+    ViewData["Title"] = "Property Search";
+}
+
+<br />
+<div class="w3-container">
+    <h6><em>Choose your search criteria below:</em></h6>
+    <div class="w3-row w3-large">
+        <form asp-action="Search">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="w3-row">
+                <div class="w3-col" style="width:15%">
+                    <h4><strong>Bedrooms:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:15%">
+                    <h4><strong>Bathrooms:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:20%">
+                    <h4><strong>Rent:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:20%">
+                    <h4><strong>Square Ft:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:15%">
+                    <h4><strong>Zip Code:</strong></h4>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBedsMin" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBedsMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBedsMax" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBedsMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBathsMin" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBathsMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBathsMax" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBathsMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:20%">
+                    <div class="w3-col s5">
+                        <input asp-for="MonthlyRentMin" class="w3-input w3-border" />
+                        <span asp-validation-for="MonthlyRentMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s5">
+                        <input asp-for="MonthlyRentMax" class="w3-input w3-border" />
+                        <span asp-validation-for="MonthlyRentMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:20%">
+                    <div class="w3-col s5">
+                        <input asp-for="SquareFeetMin" class="w3-input w3-border" />
+                        <span asp-validation-for="SquareFeetMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s5">
+                        <input asp-for="SquareFeetMax" class="w3-input w3-border" />
+                        <span asp-validation-for="SquareFeetMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s8">
+                        <input asp-for="ZipCode" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:10%">
+                    <input type="submit" value="Search" class="w3-button w3-green w3-left-align" />
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-col" style="width:15%; margin-top:-16px;">
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+                <div class="w3-col" style="width:15%; margin-top:-16px;">
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+                <div class="w3-col" style="width:20%; margin-top:-16px;">
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+                <div class="w3-col" style="width:20%; margin-top:-16px;">
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        @foreach (Property property in Model.CurrentAvailableProperties)
+        {
+            <div class="w3-container">
+                <h3 class="w3-text-green">@property.PropertyName</h3>
+                <p><i class="fas fa-home"></i> Property Type: @property.PropertyType</p>
+                <p><i class="fas fa-door-open"></i> Available Units: @property.UnitsAtThisProperty.Count()</p>
+            </div>
+            @foreach (Unit unit in property.UnitsAtThisProperty)
+            {
+                <div class="w3-container">
+                    <div class="w3-display-container">
+                        <img src="@unit.ImageSource" style="width:100%;margin-bottom:-6px">
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <h4><strong>@unit.AddressLine1</strong></h4>
+                    <h6><em>@unit.Tagline</em></h6>
+                    <div>
+                        <p>@unit.Description</p>
+                    </div>
+                    <hr>
+                    <h4><strong>Details</strong></h4>
+                    <div class="w3-row w3-large">
+                        <div class="w3-col s6">
+                            <p><i class="fas fa-ruler"></i> Square Feet: @unit.SquareFeet.ToString("#,##0")</p>
+                            <p><i class="fa fa-fw fa-bed"></i> Bedrooms: @unit.NumberOfBeds</p>
+                            <p><i class="fa fa-fw fa-bath"></i> Bathrooms: @unit.NumberOfBaths</p>
+                        </div>
+                        <div class="w3-col s6">
+                            <p><i class="fa fa-fw fa-money"></i> Monthly Rent: @unit.MonthlyRent.ToString("C") </p>
+                            <p><i class="fas fa-lock"></i> Security Deposit: @unit.SecurityDeposit.ToString("C")</p>
+                            <p><i class="fa fa-fw fa-paw"></i> Pet Deposit: @unit.PetDeposit.ToString("C")</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4><strong>Features & Amenities</strong></h4>
+                    <div class="w3-row w3-large">
+                        <div class="w3-col s6">
+                            @if (unit.WasherDryer)
+                            {
+                                <p><i class="fas fa-tshirt"></i> Washer/Dryer: Yes</p>
+                            }
+                            else
+                            {
+                                <p><i class="fas fa-tshirt"></i> Washer/Dryer: No</p>
+                            }
+                            <p><i class="fa fa-fw fa-car"></i> Parking: @unit.ParkingSpots</p>
+                        </div>
+                        <div class="w3-col s6">
+                            @if (unit.Gym)
+                            {
+                                <p><i class="fas fa-dumbbell"></i> Gym Access: Yes</p>
+                            }
+                            else
+                            {
+                                <p><i class="fas fa-dumbbell"></i> Gym Access: No</p>
+                            }
+                            @if (unit.Pool)
+                            {
+                                <p><i class="fas fa-swimmer"></i> Pool Access: Yes</p>
+                            }
+                            else
+                            {
+                                <p><i class="fas fa-swimmer"></i> Pool Access: No</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

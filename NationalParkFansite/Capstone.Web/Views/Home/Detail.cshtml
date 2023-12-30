@@ -1,0 +1,212 @@
+﻿@model Capstone.Web.Models.ParkWeatherViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+    string temp = Model.TempType;
+}
+
+<style>
+
+    .big-weather-container {
+        justify-content: center;
+    }
+
+    .first-weather-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .first-day-forecast {
+        display: inline-block;
+        justify-content: center;
+    }
+
+    .next-days-forecast {
+        display: inline-block;
+        height: 200px;
+        width: auto;
+        margin-top: 110px;
+        padding: 10px;
+        justify-content: center;
+    }
+
+        .next-days-forecast img {
+            height: 60%;
+            width: auto;
+        }
+
+    .temp-buttons {
+        padding-top: 80px;
+        justify-content: center;
+    }
+
+    #header-image {
+        height: 100%;
+        width: auto;
+    }
+
+    .top-top-div {
+        display: flex;
+        height: 550px;
+    }
+
+    #header-image-div {
+        display: inline-block;
+        float: left;
+        margin: auto;
+    }
+
+    .header-text-div {
+        display: inline-block;
+        float: right;
+        text-align: center;
+        padding-left: 20px;
+        margin: auto;
+    }
+
+    #header-text {
+        color: #319F50
+    }
+
+    .description-text {
+        margin-top: 10px;
+        border-top: 1px solid lightgrey;
+    }
+
+    .btn-primary {
+        background-color: #319F50;
+        color: white;
+        border-color: #319F50;
+        border-radius: 25px;
+    }
+
+    .quote-block {
+        max-height: 10px;
+    }
+
+</style>
+
+@*Session To String adds extra quotation marks to our value, ruining the if statement, and we cannot figure it out*@
+<div class="topDiv">
+    <div class="top-top-div">
+        <div id="header-image-div">
+            <img src="~/Images/parks/@(Model.Park.Code).jpg" id="header-image" />
+        </div>
+        <div class="header-text-div">
+            <h1 id="header-text">@Model.Park.Name</h1>
+            <ul class="list-group" style="height: 50%">
+                <li class="list-group-item">Acreage: @Model.Park.Acreage</li>
+                <li class="list-group-item">Elevation: @Model.Park.Elevation</li>
+                <li class="list-group-item">Miles of Trail: @Model.Park.MilesOfTrail</li>
+                <li class="list-group-item">Number of Campsites: @Model.Park.NumberOfSites</li>
+                <li class="list-group-item">Climate: @Model.Park.Climate</li>
+                <li class="list-group-item">Year Founded: @Model.Park.YearFounded</li>
+                <li class="list-group-item">Visitor Count: @Model.Park.VisitorCount</li>
+            </ul>
+            <div class="quote-block">
+                <p>@Model.Park.Quote</p>
+                <p><span>-@Model.Park.QuoteSource</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="description-text">
+        <h5>@Model.Park.Description</h5>
+    </div>
+</div>
+<div class="big-weather-container">
+    @if (Model.TempType == "\"Fahrenheit\"")
+    {
+        <div class="first-weather-container">
+            @foreach (Weather item in Model.Weather)
+            {
+                @if (item.ForecastDay == 1)
+                {
+                    <div class="first-day-forecast">
+                        <h3>Today</h3>
+                        <img src="~/Images/weather/@(item.Forecast).png" class="first-day-weather" />
+                        <ul class="list-group">
+                            <li class="list-group-item" style="display: inline-block">High: @(item.HighFahrenheit)° F</li>
+                            <li class="list-group-item" style="display: inline-block">Low: @(item.LowFahrenheit)° F</li>
+                        </ul>
+                        <h3>@item.WeatherAdvice</h3>
+                        @if (item.HighFahrenheit > 75)
+                        {
+                            <h3>Please bring an extra gallon of water!</h3>
+                        }
+                        @if (item.LowFahrenheit < 20)
+                        {
+                            <h3>Be wary of the dangers of being exposed to frigid temperatures.</h3>
+                        }
+                        @if ((item.HighFahrenheit - item.LowFahrenheit) >= 20)
+                        {
+                            <h3>Be sure to wear breathable layers!</h3>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="next-days-forecast">
+                        <img src="~/Images/weather/@(item.Forecast).png" class="weather-image" />
+                        <ul class="list-group">
+                            <li class="list-group-item">High: @(item.HighFahrenheit)° F</li>
+                            <li class="list-group-item">High: @(item.LowFahrenheit)° F</li>
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <div class="first-weather-container">
+            @foreach (Weather item in Model.Weather)
+            {
+                @if (item.ForecastDay == 1)
+                {
+                    <div class="first-day-forecast">
+                        <h3>Today</h3>
+                        <img src="~/Images/weather/@(item.Forecast).png" class="first-day-weather" />
+                        <ul class="list-group">
+                            <li class="list-group-item" style="display: inline-block">High: @(Math.Round(item.HighCelsius, 1, MidpointRounding.AwayFromZero))° C</li>
+                            <li class="list-group-item" style="display: inline-block">Low: @(Math.Round(item.LowCelsius, 1, MidpointRounding.AwayFromZero))° C</li>
+                        </ul>
+                        <h3>@item.WeatherAdvice</h3>
+                        @if (item.HighCelsius > 23.9)
+                        {
+                            <h3>Please bring an extra gallon of water!</h3>
+                        }
+                        @if (item.LowCelsius < -6.7)
+                        {
+                            <h3>Be wary of the dangers of being exposed to frigid temperatures.</h3>
+                        }
+                        @if ((item.HighFahrenheit - item.LowFahrenheit) >= 20)
+                        {
+                            <h3>Be sure to wear breathable layers!</h3>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="next-days-forecast">
+                        <img src="~/Images/weather/@(item.Forecast).png" class="weather-image" />
+                        <ul class="list-group">
+                            <li class="list-group-item">High: @(Math.Round(item.HighCelsius, 1, MidpointRounding.AwayFromZero))° C</li>
+                            <li class="list-group-item">High: @(Math.Round(item.LowCelsius, 1, MidpointRounding.AwayFromZero))° C</li>
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
+    }   
+</div>
+<footer>
+    <div class="temp-buttons">
+        <form method="post" asp-action="CelciusDetail" asp-route-id=@(Model.Park.Code)>
+            <button class="btn btn-primary btn-sm" style="margin-bottom:1px;">Click here for Celcius</button>
+        </form>
+        <form method="post" asp-action="FahrenheitDetail" asp-route-id=@(Model.Park.Code)>
+            <button class="btn btn-primary btn-sm">Click here for Fahrenheit</button>
+        </form>
+    </div>
+</footer>
+

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Capstone.Models.Application>
+
+@{
+    ViewData["Title"] = "Review Applications";
+}
+
+<br />
+<div class="w3-container">
+    <div class="w3-row w3-large">
+        <div>
+            <hr />
+            @foreach (Application application in Model)
+            {
+                <div class="w3-container">
+                    <div class="w3-row w3-large">
+                        @*TODO: return the unit address instead*@
+                        <h3><strong>Applying to unit #: @application.UnitID</strong></h3>
+                    </div>
+                    <div class="w3-row w3-large">
+                        <div class="w3-col" style="width:20%">
+                            <h4><strong>Details:</strong></h4>
+                        </div>
+                        <div class="w3-col" style="width:22%">
+                            <h4><strong>Last Residence:</strong></h4>
+                        </div>
+                        <div class="w3-col" style="width:25%">
+                            <h4><strong>Employment:</strong></h4>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-large">
+                        <div class="w3-col" style="width:20%">
+                            <h6><strong>First Name: @application.FirstName</strong></h6>
+                            <h6><strong>Last Name: @application.LastName</strong></h6>
+                            <h6><strong>SSN: @application.SocialSecurityNumber</strong></h6>
+                            <h6><strong>Phone Number: @application.PhoneNumber</strong></h6>
+                            <h6><strong>Email: @application.EmailAddress</strong></h6>
+                            <h6><strong>Number of Residents: @application.NumberOfResidents</strong></h6>
+                            <h6><strong>Number of Cats: @application.NumberOfCats</strong></h6>
+                            <h6><strong>Number of Dogs: @application.NumberOfDogs</strong></h6>
+                        </div>
+                        <div class="w3-col" style="width:22%">
+                            <h6><strong>Owner Name: @application.LastResidenceOwner</strong></h6>
+                            <h6><strong>Owner Phone Number: @application.LastResidenceContactPhoneNumber</strong></h6>
+                            <h6><strong>Move-In Date: @application.LastResidenceTenancyStartDate</strong></h6>
+                            <h6><strong>Move-Out Date: @application.LastResidenceTenancyEndDate</strong></h6>
+                        </div>
+                        <div class="w3-col" style="width:25%">
+                            @if (application.EmploymentStatus)
+                            {
+                                <h6><strong>Status: Employed</strong></h6>
+                            }
+                            else
+                            {
+                                <h6><strong>Status: Unemployed</strong></h6>
+                            }
+                            <h6><strong>Employer Name: @application.EmployerName</strong></h6>
+                            <h6><strong>Employer Contact Phone Number: @application.EmployerContactPhoneNumber</strong></h6>
+                            <h6><strong>Annual Income: @application.AnnualIncome</strong></h6>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-large">
+                        <div class="w3-col" style="width:33%">
+                            <div class="w3-col" style="width:33%">
+                                @using (Html.BeginForm("Approve", "Owner"))
+                                {
+                                    <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
+                                    <input class="w3-button w3-green w3-left-align" type="submit" value="Approve" />
+                                }
+                            </div>
+                            <div class="w3-col" style="width:33%">
+                                @using (Html.BeginForm("Deny", "Owner"))
+                                {
+                                    <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
+                                    <input class="w3-button w3-green w3-left-align" type="submit" value="Deny" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <hr />
+        <div>
+            <a asp-action="Index">Back to Owner Home</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+.cell {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.cell div {
+  color: blue;
+  caret-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-large {
+  width: 85px;
+  font-size: 4em;
+}
+
+.cell-medium {
+  width: 56.7px;
+  font-size: 2.67em;
+}
+
+.cell-small {
+  width: 28.3px;
+  font-size: 1.33em;
+}
+
+.selected div {
+  background-color: rgba(247, 247, 56, 0.466);
+}
+
+.starting div {
+  color: black;
+}
+
+.markup-large {
+  font-size: 1em;
+}
+
+.markup-medium {
+  font-size: 0.67em;
+}
+
+.markup-small {
+  font-size: 0.33em;
+}
+
+.incorrect div {
+  background-color: #ee7d79;
+}
+
+::selection {
+  background-color: transparent;
+}

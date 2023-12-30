@@ -1,0 +1,74 @@
+﻿@model Capstone.Models.ViewModels.OwnersPropertiesViewModel
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<br />
+<div class="w3-container">
+    <div class="w3-row w3-large">
+        @* TODO: Check math for this *@
+        <h6><strong>Avg. Vacancy of All Units: @Model.AverageVacancyForAllUnits()</strong></h6>
+        <h6><strong>Avg. Rent of All Units: @Math.Round(Model.AverageBaseRentAllUnits(), 2).ToString("C")</strong></h6>
+        <h6><strong>Rent Collected this Year: @Model.SumRentCollectedYTD().ToString("C")</strong></h6>
+
+        <div>
+            <hr />
+            @foreach (Property property in Model.CurrentOwnerProperties)
+            {
+                <div class="w3-container">
+                    <div class="w3-row w3-large">
+                        <h2 class="w3-text-green"><strong>@property.PropertyName</strong></h2>
+                    </div>
+                    <div class="w3-row w3-large">
+                        <div class="w3-col" style="width:17%">
+                            <h6><strong>Vacancy Rate: @Math.Round(property.GetVacancyRate(), 2).ToString("C")</strong> </h6>
+                            <h6><strong>Estimated Gross Rent: @Math.Round(property.GetTotalScheduledGrossRents(), 2).ToString("C")</strong> </h6>
+                            <h6><strong> Effective Gross Income: @Math.Round(property.GetEffectiveGrossIncome(), 2).ToString("C")</strong></h6>
+                        </div>
+                        <div class="w3-col" style="width:17%">
+
+                            <h5><i class="fas fa-home"></i> Property Type: @property.PropertyType</h5>
+                            <h5><i class="fas fa-list-ol"></i> Number of Units: @property.UnitsAtThisProperty.Count()</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <div class="w3-row w3-large">
+                        <hr />
+                        @foreach (Unit unit in property.UnitsAtThisProperty)
+                        {
+                            <div class="w3-col" style="width:33%">
+                                <h5 class="w3-text-black"><strong>@unit.AddressLine1</strong></h5>
+                                <div class="w3-row w3-large">
+                                    <div class="w3-col s6">
+                                        <h6><i class="fas fa-ruler"></i> Square Feet: @unit.SquareFeet.ToString("#,##0")</h6>
+                                        <h6><i class="fa fa-fw fa-money"></i> Monthly Rent: @unit.MonthlyRent.ToString("C") </h6>
+                                        <h6><i class="fas fa-lock"></i> Security Deposit: @unit.SecurityDeposit.ToString("C")</h6>
+                                        <h6><i class="fa fa-fw fa-paw"></i> Pet Deposit: @unit.PetDeposit.ToString("C")</h6>
+                                    </div>
+                                    <div class="w3-col s6">
+                                        @if (unit.IsVacant)
+                                        {
+                                            <h6><i class="fas fa-door-open"></i> Unit: Vacant</h6>
+                                        }
+                                        else
+                                        {
+                                            <h6><i class="fas fa-door-closed"></i> Unit: Occupied</h6>
+                                        }
+                                        <h6><i class="fa fa-fw fa-bed"></i> Bedrooms: @unit.NumberOfBeds</h6>
+                                        <h6><i class="fa fa-fw fa-bath"></i> Bathrooms: @unit.NumberOfBaths</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <hr />
+        <div>
+            <a asp-action="Index">Back to Owner Home</a>
+        </div>
+    </div>
+</div>

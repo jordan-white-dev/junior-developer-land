@@ -1,0 +1,31 @@
+﻿body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", Arial, Helvetica, sans-serif;  
+}
+
+#w3-bar w3-theme w3-top w3-left-align w3-large ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+#logo {
+    width: 400px;
+    height: auto;
+}
+
+div#w3-bar w3-theme w3-top w3-left-align w3-large {
+    text-align: center;
+}
+
+div#nav ul {
+    display: inline-block;
+}
+
+
+/*.w3-input {
+    display:inline-block;
+    height: 20px;
+}*/
+
+/*.control-label {
+    height: 10px;
+}*/

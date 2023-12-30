@@ -1,0 +1,388 @@
+﻿@model Capstone.Models.Unit
+
+@{
+    ViewData["Title"] = "Add Units";
+}
+
+<br />
+<div class="w3-container">
+    <h2><strong>Add Units</strong></h2>
+    <h6>If you have not added the associated property yet, <a asp-controller="Owner" asp-action="Property">click here</a></h6>
+    <div class="w3-row w3-large">
+
+
+        <form asp-controller="Owner" asp-action="Unit">
+            <div asp-validation-summary="ModelOnly"></div>
+            <hr />
+
+            <div class="w3-row" style="margin-top:-25px;">
+                <h3><strong>Details:</strong></h3>
+            </div>
+
+
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:12%">
+                    <div class="w3-col s10">
+                        <label asp-for="PropertyID" class="control-label"></label>
+                        <input asp-for="PropertyID" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="PropertyID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="SquareFeet" class="control-label"></label>
+                        <input asp-for="SquareFeet" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="SquareFeet" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="NumberOfBeds" class="control-label"></label>
+                        <input asp-for="NumberOfBeds" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="NumberOfBaths" class="control-label"></label>
+                        <input asp-for="NumberOfBaths" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="NumberOfBaths" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:30%">
+                    <div class="w3-col s10">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:25%">
+                    <div class="w3-col s10">
+                        <label asp-for="Tagline" class="control-label"></label>
+                        <input asp-for="Tagline" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="Tagline" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:30%">
+                    <div class="w3-col s10">
+                        <label asp-for="ImageSource" class="control-label"></label>
+                        <input asp-for="ImageSource" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ImageSource" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w3-row" style="margin-top:-25px;">
+                <h3><strong>Fees:</strong></h3>
+            </div>
+
+
+
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="MonthlyRent" class="control-label"></label>
+                        <input asp-for="MonthlyRent" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="MonthlyRent" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="ApplicationFee" class="control-label"></label>
+                        <input asp-for="ApplicationFee" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ApplicationFee" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:18%">
+                    <div class="w3-col s10">
+                        <label asp-for="SecurityDeposit" class="control-label"></label>
+                        <input asp-for="SecurityDeposit" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="SecurityDeposit" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s10">
+                        <label asp-for="PetDeposit" class="control-label"></label>
+                        <input asp-for="PetDeposit" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="PetDeposit" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-row" style="margin-top:-25px;">
+                <h3><strong>Location:</strong></h3>
+            </div>
+
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:25%">
+                    <div class="w3-col s10">
+                        <label asp-for="AddressLine1" class="control-label"></label>
+                        <input asp-for="AddressLine1" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:25%">
+                    <div class="w3-col s10">
+                        <label asp-for="AddressLine2" class="control-label"></label>
+                        <input asp-for="AddressLine2" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="AddressLine2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:20%">
+                    <div class="w3-col s10">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:7%">
+                    <div class="w3-col s10">
+                        <label asp-for="State" class="control-label"></label>
+                        <input asp-for="State" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:10%">
+                    <div class="w3-col s10">
+                        <label asp-for="ZipCode" class="control-label"></label>
+                        <input asp-for="ZipCode" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-row" style="margin-top:-25px;">
+                <h3><strong>Features & Amenities:</strong></h3>
+                <br />
+
+
+                <div class="w3-row" style="margin-top:-25px;">
+
+                    <div class="w3-col" style="width:15%">
+                        <div class="w3-col s10">
+                            <h4><strong>Washer/Dryer:</strong></h4>
+                        </div>
+                    </div>
+
+                    <div class="w3-col" style="width:15%">
+                        <div class="w3-col s10">
+                            <h4><strong>Gym:</strong></h4>
+                        </div>
+                    </div>
+
+                    <div class="w3-col" style="width:15%">
+                        <div class="w3-col s10">
+                            <h4><strong>Pool:</strong></h4>
+                        </div>
+                    </div>
+
+                    <div class="w3-col" style="width:20%">
+                        <div class="w3-col s10">
+                            <h4><strong>Parking:</strong></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row">
+                    <div class="form-group w3-col" style="width:15%">
+                        <div class="w3-col s10">
+                            <input type="radio" name="WasherDryer" value="true" class="w3-radio w3-border activity-selector" />
+                            <label class="control-label" style="font-size:15px;">Yes</label>
+                            <div></div>
+                            <input type="radio" name="WasherDryer" value="false" class="w3-radio w3-border activity-selector" />
+                            <label class="control-label" style="font-size:15px;">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group w3-col" style="width:15%">
+                        <div class="w3-col s10">
+                            <input type="radio" name="Gym" value="true" class="w3-radio w3-border activity-selector" />
+                            <label class="control-label" style="font-size:15px;">Yes</label>
+                            <div></div>
+                            <input type="radio" name="Gym" value="false" class="w3-radio w3-border activity-selector" />
+                            <label class="control-label" style="font-size:15px;">No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group w3-col" style="width:15%;">
+                        <div class="w3-col s10">
+                            <input type="radio" name="Pool" value="true" class="w3-radio w3-border activity-selector" />
+                            <label class="control-label" style="font-size:15px;">Yes</label>
+                            <div></div>
+                            <input type="radio" name="Pool" value="false" class="w3-radio w3-border activity-selector" />
+                            <label class="control-label" style="font-size:15px;">No</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group w3-col" style="width:20%">
+                        <div class="w3-col s10">
+                            <br />
+                            <input asp-for="ParkingSpots" class="w3-input w3-border" style="vertical-align:bottom;" />
+                            <span asp-validation-for="ParkingSpots" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="w3-row">
+                <div class="form-group w3-col">
+                    <input type="submit" value="Submit" class="w3-button w3-green w3-left-align" />
+                </div>
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to Owner Home</a>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+@*<hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Unit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="PropertyID" class="control-label"></label>
+                    <input asp-for="PropertyID" class="form-control" />
+                    <span asp-validation-for="PropertyID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MonthlyRent" class="control-label"></label>
+                    <input asp-for="MonthlyRent" class="form-control" />
+                    <span asp-validation-for="MonthlyRent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SquareFeet" class="control-label"></label>
+                    <input asp-for="SquareFeet" class="form-control" />
+                    <span asp-validation-for="SquareFeet" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberOfBeds" class="control-label"></label>
+                    <input asp-for="NumberOfBeds" class="form-control" />
+                    <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberOfBaths" class="control-label"></label>
+                    <input asp-for="NumberOfBaths" class="form-control" />
+                    <span asp-validation-for="NumberOfBaths" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tagline" class="control-label"></label>
+                    <input asp-for="Tagline" class="form-control" />
+                    <span asp-validation-for="Tagline" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageSource" class="control-label"></label>
+                    <input asp-for="ImageSource" class="form-control" />
+                    <span asp-validation-for="ImageSource" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApplicationFee" class="control-label"></label>
+                    <input asp-for="ApplicationFee" class="form-control" />
+                    <span asp-validation-for="ApplicationFee" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SecurityDeposit" class="control-label"></label>
+                    <input asp-for="SecurityDeposit" class="form-control" />
+                    <span asp-validation-for="SecurityDeposit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PetDeposit" class="control-label"></label>
+                    <input asp-for="PetDeposit" class="form-control" />
+                    <span asp-validation-for="PetDeposit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddressLine1" class="control-label"></label>
+                    <input asp-for="AddressLine1" class="form-control" />
+                    <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AddressLine2" class="control-label"></label>
+                    <input asp-for="AddressLine2" class="form-control" />
+                    <span asp-validation-for="AddressLine2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="State" class="control-label"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZipCode" class="control-label"></label>
+                    <input asp-for="ZipCode" class="form-control" />
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="WasherDryer" value="true" class="activity-selector" />
+                    <label asp-for="WasherDryer" class="control-label">Available Washer/Dryer - Yes</label>
+
+                    <input type="radio" name="WasherDryer" value="false" class="activity-selector" checked="checked" />
+                    <label asp-for="WasherDryer" class="control-label">Available Washer/Dryer - No</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="AllowCats" value="true" class="activity-selector" />
+                    <label asp-for="AllowCats" class="control-label">Cats Allowed - Yes</label>
+
+                    <input type="radio" name="AllowCats" value="false" class="activity-selector" checked="checked" />
+                    <label asp-for="AllowCats" class="control-label">Cats Allowed - No</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="AllowDogs" value="true" class="activity-selector" />
+                    <label asp-for="AllowDogs" class="control-label">Allow Dogs - Yes</label>
+
+                    <input type="radio" name="AllowDogs" value="false" class="activity-selector" checked="checked" />
+                    <label asp-for="AllowDogs" class="control-label">Allow Dogs - No</label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ParkingSpots" class="control-label"></label>
+                    <input asp-for="ParkingSpots" class="form-control" />
+                    <span asp-validation-for="ParkingSpots" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="Gym" value="true" class="activity-selector" />
+                    <label asp-for="Gym" class="control-label">Available Gym - Yes</label>
+
+                    <input type="radio" name="Gym" value="false" class="activity-selector" checked="checked" />
+                    <label asp-for="Gym" class="control-label">Available Gym - No</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" name="Pool" value="true" class="activity-selector" />
+                    <label asp-for="Pool" class="control-label">Available Pool - Yes</label>
+
+                    <input type="radio" name="Pool" value="false" class="activity-selector" checked="checked" />
+                    <label asp-for="Pool" class="control-label">Available Pool - No</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>*@

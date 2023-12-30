@@ -1,0 +1,28 @@
+.calculator-wrap {
+  text-align: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.button-wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.button-appearance {
+  height: 60px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.field-appearance {
+  text-align: right;
+  background-color: #dfdfdf;
+  font-size: 3rem;
+  border: 1px solid #c4c4c4;
+  padding-right: 10px;
+}
